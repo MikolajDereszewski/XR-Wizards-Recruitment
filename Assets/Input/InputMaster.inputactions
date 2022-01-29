@@ -1,0 +1,96 @@
+{
+    "name": "InputMaster",
+    "maps": [
+        {
+            "name": "Forklift",
+            "id": "d15dece9-d761-463b-9461-e4b689a69595",
+            "actions": [
+                {
+                    "name": "Accelerate",
+                    "type": "Value",
+                    "id": "a7f56a39-6dd4-4894-be97-f24ffb6b871e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Decelerate",
+                    "type": "Value",
+                    "id": "1e138370-be67-4132-84e7-08361d83bef0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TurnLeft",
+                    "type": "Value",
+                    "id": "b517529f-fc55-481d-a1f0-162b0d526bb9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TurnRight",
+                    "type": "Value",
+                    "id": "9d06dbf9-3801-4348-8c67-36acdbcdbfc6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "fe554c58-0a29-4f33-910a-ab2b71094f95",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Forklift",
+                    "action": "Accelerate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c2b3eb1-583b-4709-bcad-6289bbd80d29",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Forklift",
+                    "action": "Decelerate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "711f612a-3b4c-48a8-aef4-a7b34f980962",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Forklift",
+                    "action": "TurnLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9cfce215-ae26-4877-9050-36c437ca76b5",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Forklift",
+                    "action": "TurnRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Forklift",
+            "bindingGroup": "Forklift",
+            "devices": []
+        }
+    ]
+}

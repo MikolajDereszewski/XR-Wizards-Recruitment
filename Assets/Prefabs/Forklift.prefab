@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1346405457788992158}
   - component: {fileID: 6006752614822774706}
   - component: {fileID: 6890734025128605247}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Forklift
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
@@ -123,12 +123,13 @@ MonoBehaviour:
   - {fileID: 7840779928030289358}
   _frontAxisRigidbody: {fileID: 873165174785072434}
   _frontAxisJoint: {fileID: 1346405457788992158}
-  _enginePower: 1000
-  _brakePower: 25
+  _enginePower: 100
+  _brakePower: 5
   _maxForwardVelocity: 15
   _maxBackwardVelocity: 5
-  _acceleration: 10
-  _backwardAcceleration: 8
+  _acceleration: 5
+  _backwardAcceleration: 3
+  _staticDeceleration: 2
   _currentVelocity: 0
   _currentTurnAngle: 0
 --- !u!1 &9064325458881551063
@@ -142,7 +143,8 @@ GameObject:
   - component: {fileID: 5830572115608392522}
   - component: {fileID: 2800592556714421945}
   - component: {fileID: 1561359232426124943}
-  m_Layer: 0
+  - component: {fileID: 5096000837985842612}
+  m_Layer: 7
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,6 +214,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5096000837985842612
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064325458881551063}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3823097893691620707
 PrefabInstance:
   m_ObjectHideFlags: 0

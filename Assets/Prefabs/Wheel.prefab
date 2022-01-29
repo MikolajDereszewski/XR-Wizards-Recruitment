@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2818304026395620000}
   - component: {fileID: 2177508390337185805}
   - component: {fileID: 4855591097145250155}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 1918129127389976697}
   - component: {fileID: 614670980861414322}
   - component: {fileID: 8470985173770717690}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}

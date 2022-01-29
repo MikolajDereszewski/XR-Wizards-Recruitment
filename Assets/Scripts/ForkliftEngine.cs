@@ -22,7 +22,7 @@ namespace Forklift.Physics
         [SerializeField]
         private float _maxForwardVelocity, _maxBackwardVelocity;
         [SerializeField]
-        private float _acceleration, _backwardAcceleration;
+        private float _acceleration, _backwardAcceleration, _staticDeceleration;
 
         private Dictionary<TurnDirection, float> _targetTurnAngles;
         public float _currentVelocity, _currentTurnAngle; //public for testing
@@ -35,6 +35,18 @@ namespace Forklift.Physics
                 {TurnDirection.Left, _frontAxisJoint.limits.min},
                 {TurnDirection.Right, _frontAxisJoint.limits.max}
             };
+        }
+
+        private void LateUpdate()
+        {
+            if (_currentVelocity > 0f)
+            {
+                _currentVelocity = Mathf.Clamp(_currentVelocity - _staticDeceleration * Time.deltaTime, 0f, _maxForwardVelocity);
+            }
+            if (_currentVelocity < 0f)
+            {
+                _currentVelocity = Mathf.Clamp(_currentVelocity + _staticDeceleration * Time.deltaTime, -_maxBackwardVelocity, 0f);
+            }
         }
 
         private void FixedUpdate()
@@ -50,22 +62,20 @@ namespace Forklift.Physics
 
         public void Accelerate()
         {
-            float acceleration = _acceleration;
             if(_currentVelocity < 0f)
             {
-                acceleration += _brakePower;
+                _currentVelocity = Mathf.Clamp(_currentVelocity + _brakePower * Time.deltaTime, _currentVelocity, 0f);
             }
-            _currentVelocity = Mathf.Clamp(_currentVelocity + acceleration * Time.deltaTime, 0f, _maxForwardVelocity);
+            _currentVelocity = Mathf.Clamp(_currentVelocity + _acceleration * Time.deltaTime, 0f, _maxForwardVelocity);
         }
 
-        public void Brake()
+        public void Decelerate()
         {
-            float acceleration = _backwardAcceleration;
             if (_currentVelocity > 0f)
             {
-                acceleration += _brakePower;
+                _currentVelocity = Mathf.Clamp(_currentVelocity - _brakePower * Time.deltaTime, -_maxBackwardVelocity, 0f);
             }
-            _currentVelocity = Mathf.Clamp(_currentVelocity - acceleration * Time.deltaTime, -_maxBackwardVelocity, 0f);
+            _currentVelocity = Mathf.Clamp(_currentVelocity - _backwardAcceleration * Time.deltaTime, -_maxBackwardVelocity, 0f);
         }
 
         public void Turn(TurnDirection direction)
