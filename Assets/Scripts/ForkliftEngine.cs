@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Forklift.Physics
@@ -25,7 +24,7 @@ namespace Forklift.Physics
         private float _acceleration, _backwardAcceleration, _staticDeceleration;
 
         private Dictionary<TurnDirection, float> _targetTurnAngles;
-        public float _currentVelocity, _currentTurnAngle; //public for testing
+        private float _currentVelocity, _currentTurnAngle;
 
         private void Awake()
         {

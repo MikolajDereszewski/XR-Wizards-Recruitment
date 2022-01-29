@@ -36,6 +36,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "RaiseLift",
+                    "type": "Value",
+                    "id": "16a38040-d5a4-4088-ae21-7a70af794bef",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LowerLift",
+                    "type": "Value",
+                    "id": "63b33354-ec4d-4564-96b7-581e7c289781",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -80,6 +96,28 @@
                     "processors": "",
                     "groups": "Forklift",
                     "action": "TurnRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4740c3ea-ada1-43fc-8f08-71ce6581d41c",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Forklift",
+                    "action": "RaiseLift",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d0aebab9-f61b-4ae7-8fd2-7e8610a619f7",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Forklift",
+                    "action": "LowerLift",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

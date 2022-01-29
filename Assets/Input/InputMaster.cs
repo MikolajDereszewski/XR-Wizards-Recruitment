@@ -49,6 +49,22 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""RaiseLift"",
+                    ""type"": ""Value"",
+                    ""id"": ""16a38040-d5a4-4088-ae21-7a70af794bef"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""LowerLift"",
+                    ""type"": ""Value"",
+                    ""id"": ""63b33354-ec4d-4564-96b7-581e7c289781"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -95,6 +111,28 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""TurnRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4740c3ea-ada1-43fc-8f08-71ce6581d41c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Forklift"",
+                    ""action"": ""RaiseLift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0aebab9-f61b-4ae7-8fd2-7e8610a619f7"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Forklift"",
+                    ""action"": ""LowerLift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -113,6 +151,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Forklift_Decelerate = m_Forklift.FindAction("Decelerate", throwIfNotFound: true);
         m_Forklift_TurnLeft = m_Forklift.FindAction("TurnLeft", throwIfNotFound: true);
         m_Forklift_TurnRight = m_Forklift.FindAction("TurnRight", throwIfNotFound: true);
+        m_Forklift_RaiseLift = m_Forklift.FindAction("RaiseLift", throwIfNotFound: true);
+        m_Forklift_LowerLift = m_Forklift.FindAction("LowerLift", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -166,6 +206,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Forklift_Decelerate;
     private readonly InputAction m_Forklift_TurnLeft;
     private readonly InputAction m_Forklift_TurnRight;
+    private readonly InputAction m_Forklift_RaiseLift;
+    private readonly InputAction m_Forklift_LowerLift;
     public struct ForkliftActions
     {
         private @InputMaster m_Wrapper;
@@ -174,6 +216,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Decelerate => m_Wrapper.m_Forklift_Decelerate;
         public InputAction @TurnLeft => m_Wrapper.m_Forklift_TurnLeft;
         public InputAction @TurnRight => m_Wrapper.m_Forklift_TurnRight;
+        public InputAction @RaiseLift => m_Wrapper.m_Forklift_RaiseLift;
+        public InputAction @LowerLift => m_Wrapper.m_Forklift_LowerLift;
         public InputActionMap Get() { return m_Wrapper.m_Forklift; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -195,6 +239,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @TurnRight.started -= m_Wrapper.m_ForkliftActionsCallbackInterface.OnTurnRight;
                 @TurnRight.performed -= m_Wrapper.m_ForkliftActionsCallbackInterface.OnTurnRight;
                 @TurnRight.canceled -= m_Wrapper.m_ForkliftActionsCallbackInterface.OnTurnRight;
+                @RaiseLift.started -= m_Wrapper.m_ForkliftActionsCallbackInterface.OnRaiseLift;
+                @RaiseLift.performed -= m_Wrapper.m_ForkliftActionsCallbackInterface.OnRaiseLift;
+                @RaiseLift.canceled -= m_Wrapper.m_ForkliftActionsCallbackInterface.OnRaiseLift;
+                @LowerLift.started -= m_Wrapper.m_ForkliftActionsCallbackInterface.OnLowerLift;
+                @LowerLift.performed -= m_Wrapper.m_ForkliftActionsCallbackInterface.OnLowerLift;
+                @LowerLift.canceled -= m_Wrapper.m_ForkliftActionsCallbackInterface.OnLowerLift;
             }
             m_Wrapper.m_ForkliftActionsCallbackInterface = instance;
             if (instance != null)
@@ -211,6 +261,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @TurnRight.started += instance.OnTurnRight;
                 @TurnRight.performed += instance.OnTurnRight;
                 @TurnRight.canceled += instance.OnTurnRight;
+                @RaiseLift.started += instance.OnRaiseLift;
+                @RaiseLift.performed += instance.OnRaiseLift;
+                @RaiseLift.canceled += instance.OnRaiseLift;
+                @LowerLift.started += instance.OnLowerLift;
+                @LowerLift.performed += instance.OnLowerLift;
+                @LowerLift.canceled += instance.OnLowerLift;
             }
         }
     }
@@ -230,5 +286,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnDecelerate(InputAction.CallbackContext context);
         void OnTurnLeft(InputAction.CallbackContext context);
         void OnTurnRight(InputAction.CallbackContext context);
+        void OnRaiseLift(InputAction.CallbackContext context);
+        void OnLowerLift(InputAction.CallbackContext context);
     }
 }

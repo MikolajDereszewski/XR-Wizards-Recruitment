@@ -8,6 +8,8 @@ namespace Forklift.Player
     {
         [SerializeField]
         private ForkliftEngine _engine;
+        [SerializeField]
+        private Lift _lift;
 
         private InputMaster _controls;
 
@@ -23,17 +25,36 @@ namespace Forklift.Player
             _controls.Enable();
         }
 
+        private void OnDisable()
+        {
+            if (_controls != null)
+            {
+                _controls.Disable();
+                _controls.Dispose();
+            }
+        }
+
         private void Update()
         {
-            if(_controls.Forklift.Accelerate.ReadValue<float>() > 0f)
+            ManageAcceleration();
+            ManageTurning();
+            ManageLift();
+        }
+
+        private void ManageAcceleration()
+        {
+            if (_controls.Forklift.Accelerate.ReadValue<float>() > 0f)
             {
                 _engine.Accelerate();
             }
-            else if(_controls.Forklift.Decelerate.ReadValue<float>() > 0f)
+            else if (_controls.Forklift.Decelerate.ReadValue<float>() > 0f)
             {
                 _engine.Decelerate();
             }
+        }
 
+        private void ManageTurning()
+        {
             if (_controls.Forklift.TurnLeft.ReadValue<float>() > 0f)
             {
                 _engine.Turn(TurnDirection.Left);
@@ -48,11 +69,15 @@ namespace Forklift.Player
             }
         }
 
-        private void OnDisable()
+        private void ManageLift()
         {
-            if (_controls != null)
+            if (_controls.Forklift.RaiseLift.ReadValue<float>() > 0f)
             {
-                _controls.Disable();
+                _lift.Raise();
+            }
+            else if (_controls.Forklift.LowerLift.ReadValue<float>() > 0f)
+            {
+                _lift.Lower();
             }
         }
     }
